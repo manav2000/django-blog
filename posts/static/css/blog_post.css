@@ -1,0 +1,138 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-brand {
+    color: blueviolet !important;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding-bottom: 100px;
+    margin-top: 50px;
+}
+
+.author-detail {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: sans-serif;
+    text-align: center;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+.author {
+    width: max-content;
+}
+
+.profile-pic img {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+
+.author-name {
+    text-decoration: underline;
+    padding-top: 5px;
+    font-size: 16px;
+}
+
+.bio {
+    padding-left: 50px;
+    font-size: 18px;
+}
+
+.thumbnail img {
+    height: 700px;
+    width: 100%;
+    padding: 10px 0px;
+}
+
+.title {
+    text-align: center;
+    padding: 40px;
+    border-bottom: 1.5px solid;
+    border-top: 1.5px solid;
+    font-size: 36px;
+    font-weight: bolder;
+}
+
+.content {
+    padding: 50px;
+    border-bottom: 1.5px solid;
+}
+
+.content pre {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    font-family: sans-serif;
+}
+
+.comment {
+    margin-top: 100px;
+}
+
+.post-details {
+    float: right;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.post-details div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.comment-section {
+    margin-top: 20px;
+}
+
+.comment-section>div {
+    background: azure;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .profile-pic img {
+        border-radius: 50%;
+        height: 80px;
+        width: 80px;
+    }
+    .author-name {
+        padding-top: 5px;
+        font-size: 13px;
+    }
+    .bio {
+        padding-left: 50px;
+        font-size: 14px;
+    }
+    .thumbnail img {
+        height: 300px;
+        width: 100%;
+        padding: 10px 0px;
+    }
+    .post-details {
+        float: left;
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+    .post-details div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}{% load static %} {% block head_css_site %}
+<link href="{% static 'css/about_author.css' %}" rel="stylesheet" type="text/css"> {% endblock head_css_site %} {% block content %}{% load crispy_forms_tags %}
+<div class="jumbotron">
+    <h1>About Him</h1>
+    <div class="profile-pic">
+        <img src="{{ author_detail.profile_pic.url }}" alt="">
+        <div class="name">
+            {{author_detail.user|upper}}
+        </div>
+    </div>
+    <div class="bio">
+        {{author_detail.bio}}
+    </div>
+</div>
+{% endblock %}

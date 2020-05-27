@@ -1,0 +1,61 @@
+{% extends 'base.html' %} {% load static %} {% block head_css_site %}
+<link href="{% static 'css/blog_post.css' %}" rel="stylesheet" type="text/css"> {% endblock head_css_site %}{% block content %} {% load custom_template_tags %}{% load crispy_forms_tags %}
+<div class="container shadow">
+    <div class="author-detail shadow-sm">
+        <div class="author">
+            <div class="profile-pic">
+                <img src="{{ author.profile_pic.url }}" alt="afasd">
+            </div>
+            <div class="author-name">
+                {{ author.user|upper }}
+            </div>
+        </div>
+        <div class="bio">
+            {{ author.bio }}
+        </div>
+    </div>
+    <div class="thumbnail">
+        <img src="{{ post.thumbnail.url }}" alt="asfddsf">
+    </div>
+    <div class="title">
+        {{ post.title }}
+    </div>
+    <div class="content">
+        {{ post.content|safe}}
+    </div>
+    <div class="comment-section">
+        <h3 style="padding-left: 5px;">Comments:</h3>
+        {% for comment in comments %}
+        <div>
+            {% with pic=comment|get_profile_pics %}
+            <img src="{{ pic.url }}" alt="" height="40" width="40" style="border-radius:20%;"> {% endwith %}
+            <b>{{ comment.user|upper }}</b>: {{ comment.content }}
+        </div>
+        {% endfor %}
+    </div>
+    {% if user.is_authenticated %}
+    <div class="post-details">
+        <h3>Loved the post, Live a LIKE</h3>
+        <div>
+            <a href="/like/{{ post.id }}/"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                {{ post.get_like_count }}
+            </a>
+            <a href=""><i class="fa fa-comments" aria-hidden="true"></i>
+                {{ post.get_comment_count }}
+            </a>
+            <a href=""><i class="fa fa-eye" aria-hidden="true"></i>
+                {{ post.get_view_count }}
+            </a>
+        </div>
+    </div>
+    <div class="comment">
+        <h3>Leave a comment</h3>
+        <form method="POST">
+            {% csrf_token %} {{ form|crispy }}
+            <button type="submit" class="btn btn-primary">COMMENT</button>
+        </form>
+    </div>
+    {% else %}
+    <a href="{% url 'posts:login' %}" class="btn btn-primary" style="color: white !important;">Login to Comment</a> {% endif %}
+</div>
+{% endblock %}

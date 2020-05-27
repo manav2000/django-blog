@@ -1,0 +1,94 @@
+<html lang="en">
+{% load crispy_forms_tags %}
+
+<head>
+    <meta charset="utf-8">
+    <title>BLOG</title>
+    <meta name="description" content="BLOG">
+    <meta name="author" content="SitePoint"> {% load static %} {% block css %} {% block head_css_site %} {% endblock head_css_site %} {% endblock css %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <!-- navbar -->
+
+    <nav class="navbar navbar-expand-md navbar-light bg-dark fixed-top">
+
+        <a class="navbar-brand" href="/" style="font-weight: 700;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/512px-Bootstrap_logo.svg.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">BLOG</a>
+
+        <button type="button" class="navbar-toggler bg-light" data-toggle="collapse" data-target="#nav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="nav">
+
+            <ul class="navbar-nav">
+
+                <li class="nav-item">
+
+                    <a class="nav-link text-light font-weight-bold px-3" href="/">HOME</a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link text-light font-weight-bold px-3" href="{% url 'posts:write_blog' %}">WRITE</a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link text-light font-weight-bold px-3" href="{% url 'posts:about' %}">ABOUT</a>
+
+                </li>
+
+                {% if user.is_authenticated %}
+                <li class='nav-item'>
+                    <a class="nav-link text-light font-weight-bold px-3" href="{% url 'posts:account' %}">ACCOUNT</a>
+                </li>
+                <li class='nav-item'>
+                    <a class="nav-link text-light font-weight-bold px-3" href="{% url 'posts:logout' %}">LOGOUT</a>
+                </li>
+                {% else %}
+                <li class='nav-item'>
+                    <a class="nav-link text-light font-weight-bold px-3" href="{% url 'posts:login' %}">LOGIN\SIGN
+                        UP</a>
+                </li>
+                {% endif %}
+
+            </ul>
+
+
+            <!-- Search bar -->
+            {% if post_filter %}
+            <form class="form-inline ml-3" method="GET">
+
+                <div class="input-group">
+
+                    {{ post_filter.form|crispy }}
+
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+
+                </div>
+
+            </form>
+            {% else %} {% endif %}
+        </div>
+
+    </nav>
+
+    {% block content %} {% endblock %}
+
+</body>
+
+</html>

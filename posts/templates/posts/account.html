@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% load static %} {% block head_css_site %}
+<link href="{% static 'css/account.css' %}" rel="stylesheet" type="text/css"> {% endblock head_css_site %}{% block content %}{% load crispy_forms_tags %}
+<h2 style="margin-top: 100px;">Manage your posts</h2>
+<div>
+    {% if posts %} {% for post in posts %}
+    <div class="user-posts shadow-lg">
+        <p>{{ post.title }}</p>
+        <div class="buttons">
+            <form action="update_post/{{ post.id }}/" action="post">
+                <button type="submit" class="btn btn-success">UPDATE</button>
+            </form>
+            <form action="delete_post/{{ post.id }}/" action="post">
+                <button type="submit" class="btn btn-danger">DELETE</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %} {% else %}
+    <h4 style="margin-left: 43%; color: red;">No posts to show</h4>
+    {% endif %}
+</div>
+{% endblock %}

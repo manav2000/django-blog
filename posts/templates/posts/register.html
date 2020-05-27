@@ -1,0 +1,10 @@
+{% extends 'base.html' %}{% load static %} {% block head_css_site %}
+<link href="{% static 'css/register.css' %}" rel="stylesheet" type="text/css"> {% endblock head_css_site %} {% block content %} {% load crispy_forms_tags %}
+<div class="form col-sm-8 col-lg-4">
+    <h1>Please REGISTER</h1>
+    <form method="POST" enctype="multiport/form-data">
+        {% csrf_token %} {{ form_one|crispy }}{{ form_two|crispy }}
+        <button type="submit" class="btn btn-primary">SIGN UP</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% load static %} {% block head_css_site %}
+<link href="{% static 'css/login.css' %}" rel="stylesheet" type="text/css"> {% endblock head_css_site %} {% block content %}{% load crispy_forms_tags %}
+<div class="form col-sm-8 col-lg-4">
+    <h1>Please Login</h1>
+    <form action="{% url 'posts:login' %}" method="POST">
+        {% csrf_token %} {{ form|crispy }}
+        <button type="submit" class="btn btn-primary">LOGIN</button>
+    </form>
+    <a href="{% url 'posts:register' %}">Don't have an account/create account</a>
+</div>
+{% endblock %}
