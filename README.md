@@ -11,4 +11,4 @@
   <li>Views</li>
   </ul>
 <hr>
-<img src="projectimages.png">
+<img src="projectimage.png">
