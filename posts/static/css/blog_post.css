@@ -63,18 +63,8 @@
 }
 
 .content {
-    padding: 50px;
+    padding: 5px;
     border-bottom: 1.5px solid;
-}
-
-.content pre {
-    overflow-x: auto;
-    white-space: pre-wrap;
-    white-space: -moz-pre-wrap;
-    white-space: -pre-wrap;
-    white-space: -o-pre-wrap;
-    word-wrap: break-word;
-    font-family: sans-serif;
 }
 
 .comment {
@@ -123,6 +113,10 @@
         height: 300px;
         width: 100%;
         padding: 10px 0px;
+    }
+    .content {
+        padding: 5px;
+        border-bottom: 1.5px solid;
     }
     .post-details {
         float: left;

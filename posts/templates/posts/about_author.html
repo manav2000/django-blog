@@ -3,7 +3,11 @@
 <div class="jumbotron">
     <h1>About Him</h1>
     <div class="profile-pic">
+    {% if author_detail.profile_pic %}
         <img src="{{ author_detail.profile_pic.url }}" alt="">
+    {% else %}
+        <img src="/static/images/user.png" alt="...">
+    {% endif %}
         <div class="name">
             {{author_detail.user|upper}}
         </div>

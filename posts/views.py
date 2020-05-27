@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .filters import PostFilter
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
 
 # Create your views here.
 
@@ -47,6 +48,7 @@ def write_a_blog(request):
         if form.is_valid():
             form.instance.author = author
             form.save()
+            messages.success(request, "Your blog was successfully posted")
             return redirect('/')
     return render(request, 'posts/write.html', {'form': form})
 
@@ -74,8 +76,12 @@ def register_view(request):
             profile.save()
 
             registered = True
+            messages.success(
+                request, "Your account was successfully created, Please login")
             return HttpResponseRedirect(reverse('posts:home'))
         else:
+            messages.error(request,
+                           "An error occured while submitting the form")
             print(form_one.errors, form_two.errors)
 
     return render(request, 'posts/register.html', {
@@ -97,6 +103,7 @@ def login_view(request):
         if user:
             if user.is_active:
                 login(request, user)
+                messages.success(request, "Your now logged in to your account")
                 return HttpResponseRedirect(reverse('posts:home'))
 
     else:
@@ -107,6 +114,7 @@ def login_view(request):
 @login_required
 def logout_view(request):
     logout(request)
+    messages.success(request, "You logged out")
     return redirect('/')
 
 
@@ -123,6 +131,7 @@ def show_blog(request, pk):
             form.instance.user = request.user
             form.instance.post = post
             form.save()
+            messages.success(request, "you just commented on this blog post")
             return redirect('/blog_post/{}/'.format(pk))
 
     return render(
@@ -141,6 +150,7 @@ def like(request, pk):
         like_qs[0].delete()
         return redirect('/blog_post/{}/'.format(pk))
     Like.objects.create(user=request.user, post=post)
+    messages.info(request, "you gave a like to this post")
     return redirect('/blog_post/{}/'.format(pk))
 
 
@@ -154,6 +164,7 @@ def account(request):
 
 def delete_post(request, pk):
     Post.objects.get(id=pk).delete()
+    messages.success(request, "you successfully deleted the post")
     return HttpResponseRedirect(reverse('posts:account'))
 
 
@@ -166,6 +177,7 @@ def update_post(request, pk):
                           instance=post)
         if form.is_valid:
             form.save()
+            messages.success(request, "you successfully updated the post")
             return HttpResponseRedirect(reverse('posts:account'))
     else:
         form = UpdatePost(instance=post)

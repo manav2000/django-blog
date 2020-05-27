@@ -4,7 +4,11 @@
     <div class="author-detail shadow-sm">
         <div class="author">
             <div class="profile-pic">
-                <img src="{{ author.profile_pic.url }}" alt="afasd">
+            {% if author.profile_pic %}
+                <img src="{{ author.profile_pic.url }}" alt="...">
+            {% else %}
+                <img src="/static/images/user.png" alt="...">
+            {% endif %}
             </div>
             <div class="author-name">
                 {{ author.user|upper }}
@@ -28,7 +32,12 @@
         {% for comment in comments %}
         <div>
             {% with pic=comment|get_profile_pics %}
-            <img src="{{ pic.url }}" alt="" height="40" width="40" style="border-radius:20%;"> {% endwith %}
+            {% if pic %}
+            <img src="{{ pic.url }}" alt="" height="40" width="40" style="border-radius:20%;"> 
+            {% else %}
+            <img src="/static/images/user.png" alt="..." height="40" width="40" style="border-radius:20%;"> 
+            {% endif %}
+            {% endwith %}
             <b>{{ comment.user|upper }}</b>: {{ comment.content }}
         </div>
         {% endfor %}

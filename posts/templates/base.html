@@ -77,7 +77,7 @@
 
                     {{ post_filter.form|crispy }}
 
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                    <button type="submit" class="btn btn-primary" style="height: 35px"><i class="fa fa-search"></i></button>
 
                 </div>
 
@@ -86,6 +86,8 @@
         </div>
 
     </nav>
+
+    {% include 'messages.html' %}
 
     {% block content %} {% endblock %}
 
