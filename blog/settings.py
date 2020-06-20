@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'posts',
     'posts.templatetags',
     'django_filters',
+    'taggit',
 ]
 
 MIDDLEWARE = [
