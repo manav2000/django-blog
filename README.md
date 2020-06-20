@@ -1,8 +1,8 @@
 # django-blog
 
-<img src="project-img.png">
+<img src="project_img.png">
 
-###Features:
+### Features:
   - Authentication
   - Write blog
   - Manage your blog(delete or update)
