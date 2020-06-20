@@ -7,3 +7,16 @@
 .navbar-brand {
     color: blueviolet !important;
 }
+
+.form {
+    padding: 30px;
+    margin-top: 50px;
+}
+
+.form a {
+    text-decoration: underline;
+}
+
+p {
+    color: crimson;
+}

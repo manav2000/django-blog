@@ -1,0 +1,12 @@
+<div class="all-tags" style="padding: 10px">
+    <h3 style="text-decoration: underline">Tags</h3>
+    {% for tag in tags %}
+        <a href="{% url 'posts:post_list_by_tag' tag.slug %}" style="font-weight: 500">
+            {{ tag }}
+        </a>
+        {% if not forloop.last %}, {% endif %}
+    {% endfor %}
+    <div>
+        <a href="{% url 'posts:tags' %}" style="text-decoration: underline;">show all tags</a>
+    </div>
+</div>

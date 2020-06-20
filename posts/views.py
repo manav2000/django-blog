@@ -1,35 +1,68 @@
 from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Post, Author, Comment, Like, PostView
-from .forms import UserRegisterFormOne, UserRegisterFormTwo, LoginForm, PostForm, CommentForm, UpdatePost
+from .models import *
+from .forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .filters import PostFilter
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
+from django.db.models import Count
+from taggit.models import Tag
 
 # Create your views here.
 
 
-def index(request):
-    blog_list = Post.objects.all().order_by('-publish_date')
-    page = request.GET.get('page', 1)
-    post = Post.objects.all()
-    post_filter = PostFilter(request.GET, queryset=post)
+def index(request, tag_slug=None):
+    posts = Post.objects.all().order_by('-publish_date')
 
-    paginator = Paginator(blog_list, 10)
+    # popular_posts = Post.published.annotate(total_comments=Count('comments')).order_by('-total_comments')[: 5]
+
+    tag = None
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        posts = Post.objects.filter(tags__in=[tag])
+
+    paginator = Paginator(posts, 3)
+    page = request.GET.get('page')
     try:
-        blogs = paginator.page(page)
+        posts = paginator.page(page)
     except PageNotAnInteger:
-        blogs = paginator.page(1)
+        posts = paginator.page(1)
     except EmptyPage:
-        blogs = paginator.page(paginator.num_pages)
+        posts = paginator.page(paginator.num_pages)
 
     return render(request, 'posts/index.html', {
-        'blogs': blogs,
-        'post_filter': post_filter,
+        'posts': posts,
+        'tag': tag,
+    })
+
+
+def search_view(request):
+    post_filter_form = SearchForm()
+    context = {
+        'post_filter_form': post_filter_form,
+    }
+    if request.method == 'GET':
+        post_filter_form = SearchForm(request.GET)
+        if post_filter_form.is_valid():
+            query = post_filter_form.cleaned_data['title']
+            filtered_posts = Post.objects.filter(title__icontains=query)
+            context = {
+                'post_filter_form': post_filter_form,
+                'query': query,
+                'filtered_posts': filtered_posts
+            }
+
+    return render(request, 'posts/search.html', context)
+
+
+def show_all_tags(request):
+    tags = Tag.objects.all().order_by('name')
+
+    return render(request, 'posts/all_tags.html', {
+        'tags': tags
     })
 
 

@@ -60,3 +60,6 @@ class UpdatePost(forms.ModelForm):
     class Meta():
         model = Post
         fields = ('title', 'content', 'thumbnail')
+
+class SearchForm(forms.Form):
+    title = forms.CharField()

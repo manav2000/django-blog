@@ -4,8 +4,17 @@
     padding: 0;
 }
 
+body {
+    overflow-x: hidden;
+    background: #f9f9f9;
+}
+
 .navbar-brand {
     color: blueviolet !important;
+}
+
+.jumbotron {
+    margin-left: 20px;
 }
 
 .post-info {
@@ -13,4 +22,35 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination > li {
+    padding: 2px 9px;
+    background: lightskyblue;
+    border-radius: 50%;
+    margin: 2px;
+}
+
+.thumbnail img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}
+
+.display-4 {
+    text-align: center;
+    font-weight: bold !important;
+}
+
+.post-tags > a{
+    background: lightskyblue;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 0px 5px;
 }

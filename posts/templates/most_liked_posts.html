@@ -1,0 +1,11 @@
+<div class="most-liked-posts" style="padding: 10px">
+    <h3 style="text-decoration: underline">Most Liked Posts</h3>
+    {% for post in most_liked_posts %}
+    <div class="most-liked-post">
+        <div class="thumbnail">
+            <img src="{{ post.thumbnail.url }}" alt="">
+        </div>
+        <p style="text-align: center;"><a href="/blog_post/{{ post.id }}/" style="text-decoration: underline;"> {{ post.title }}</a></p>
+    </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head_css_site %}
+    <link href="{% static 'css/all_tags.css' %}" rel="stylesheet" type="text/css">
+{% endblock head_css_site %}
+
+{% block content %}
+    <div class="shadow container all-tags" style="margin-top: 120px; padding: 30px">
+        <h1>Tags</h1>
+        {% for tag in tags %}
+        <a href="{% url 'posts:post_list_by_tag' tag.slug %}">
+            {{ tag }}
+        </a>
+        {% endfor %}
+    </div>
+{% endblock content %}

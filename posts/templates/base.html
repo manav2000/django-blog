@@ -70,19 +70,7 @@
 
 
             <!-- Search bar -->
-            {% if post_filter %}
-            <form class="form-inline ml-3" method="GET">
-
-                <div class="input-group">
-
-                    {{ post_filter.form|crispy }}
-
-                    <button type="submit" class="btn btn-primary" style="height: 35px"><i class="fa fa-search"></i></button>
-
-                </div>
-
-            </form>
-            {% else %} {% endif %}
+            <a href="{% url 'posts:search' %}" class="btn btn-primary"><i class="fa fa-search"></i></a>
         </div>
 
     </nav>

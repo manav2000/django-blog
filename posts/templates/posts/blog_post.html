@@ -1,5 +1,11 @@
-{% extends 'base.html' %} {% load static %} {% block head_css_site %}
-<link href="{% static 'css/blog_post.css' %}" rel="stylesheet" type="text/css"> {% endblock head_css_site %}{% block content %} {% load custom_template_tags %}{% load crispy_forms_tags %}
+{% extends 'base.html' %}
+{% load static %}
+{% block head_css_site %}
+    <link href="{% static 'css/blog_post.css' %}" rel="stylesheet" type="text/css">
+{% endblock head_css_site %}
+{% block content %}
+{% load custom_template_tags %}
+{% load crispy_forms_tags %}
 <div class="container shadow">
     <div class="author-detail shadow-sm">
         <div class="author">
@@ -18,6 +24,14 @@
             {{ author.bio }}
         </div>
     </div>
+    <div class="tags" style="padding:20px;">
+        <b>Tags:</b>
+        {% for tag in post.tags.all %}
+            <a href="{% url 'posts:post_list_by_tag' tag.slug %}">
+                {{ tag }}
+            </a>
+        {% endfor %}
+    </div>
     <div class="thumbnail">
         <img src="{{ post.thumbnail.url }}" alt="asfddsf">
     </div>
@@ -25,7 +39,7 @@
         {{ post.title }}
     </div>
     <div class="content">
-        {{ post.content|safe}}
+        {{ post.content|markdown }}
     </div>
     <div class="comment-section">
         <h3 style="padding-left: 5px;">Comments:</h3>
@@ -33,9 +47,9 @@
         <div>
             {% with pic=comment|get_profile_pics %}
             {% if pic %}
-            <img src="{{ pic.url }}" alt="" height="40" width="40" style="border-radius:20%;"> 
+            <img src="{{ pic.url }}" alt="" height="40" width="40" style="border-radius:20%;">
             {% else %}
-            <img src="/static/images/user.png" alt="..." height="40" width="40" style="border-radius:20%;"> 
+            <img src="/static/images/user.png" alt="..." height="40" width="40" style="border-radius:20%;">
             {% endif %}
             {% endwith %}
             <b>{{ comment.user|upper }}</b>: {{ comment.content }}

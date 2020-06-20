@@ -47,6 +47,13 @@
     font-size: 18px;
 }
 
+.tags a {
+    background: lightskyblue;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 0px 5px;
+}
+
 .thumbnail img {
     height: 700px;
     width: 100%;

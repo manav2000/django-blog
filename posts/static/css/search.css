@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-brand {
+    color: blueviolet !important;
+}
+
+.search-form {
+    margin-top: 120px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-form form {
+    padding: 20px;
+}
+
+#div_id_title {
+    margin: 5px;
+}
+
+.search-form form button {
+    margin: 5px;
+    padding: 10px;
+    width: 50px;
+}
+
+.results {
+    text-align: center;
+    padding: 20px;
+    text-decoration: underline;
+}
+
+.results-container {
+    width: 60%;
+    margin: auto;
+    padding: 30px;
+}
+
+.result {
+    display: flex;
+    justify-content: space-between;
+}
+
+.result p > i {
+    margin: 0px 10px;
+}

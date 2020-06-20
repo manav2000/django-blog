@@ -17,5 +17,8 @@ urlpatterns = [
          views.delete_post, name='delete_post'),
     path('account/update_post/<int:pk>/',
          views.update_post, name='update_post'),
-    path('about_author/<str:author>/', views.about_author, name='about_author')
+    path('about_author/<str:author>/', views.about_author, name='about_author'),
+    path('tag/<slug:tag_slug>/', views.index, name='post_list_by_tag'),
+    path('search/', views.search_view, name='search'),
+    path('tags/', views.show_all_tags, name='tags')
 ]
