@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'crispy_forms',
     'posts',
     'posts.templatetags',
@@ -138,3 +139,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'blog/media')
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_URL = '/login/'
+
+SITE_ID = 1

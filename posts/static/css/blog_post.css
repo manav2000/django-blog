@@ -91,6 +91,18 @@
     justify-content: space-evenly;
 }
 
+.share {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-bottom: 1.5px solid black;
+}
+
+.share i {
+    font-size: 30px !important;
+    padding: 10px 5px;
+}
+
 .comment-section {
     margin-top: 20px;
 }

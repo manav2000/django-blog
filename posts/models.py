@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from taggit.managers import TaggableManager
+from django.urls import reverse
 
 # Create your models here.
 
@@ -13,6 +14,10 @@ class Author(models.Model):
 
     def __str__(self):
         return str(self.user)
+
+    def get_absolute_url(self):
+        return reverse("posts:about_author",
+                       kwargs={"author": self.user.username})
 
 
 class Post(models.Model):
@@ -40,6 +45,9 @@ class Post(models.Model):
     @property
     def get_view_count(self):
         return self.postview_set.all().count()
+
+    def get_absolute_url(self):
+        return reverse("posts:blog_post", kwargs={"pk": self.pk})
 
 
 class Comment(models.Model):

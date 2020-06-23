@@ -61,9 +61,7 @@ def search_view(request):
 def show_all_tags(request):
     tags = Tag.objects.all().order_by('name')
 
-    return render(request, 'posts/all_tags.html', {
-        'tags': tags
-    })
+    return render(request, 'posts/all_tags.html', {'tags': tags})
 
 
 def get_author(user):
@@ -155,6 +153,7 @@ def show_blog(request, pk):
     post = Post.objects.get(id=pk)
     ind = User.objects.get(username=post.author)
     author_detail = Author.objects.get(id=ind.id)
+    tags = post.tags.all()
     # comments = get_object_or_404(Comment)
     comments = post.comment_set.all()
     PostView.objects.create(post=post)
@@ -173,6 +172,7 @@ def show_blog(request, pk):
             'author': author_detail,
             'form': form,
             'comments': comments,
+            'tags': tags
         })
 
 
